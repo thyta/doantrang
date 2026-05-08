@@ -1,0 +1,18 @@
+{
+    "visits": 2,
+    "button_clicks": 0,
+    "logs": [
+        {
+            "time": "08\/05\/2026 13:41:30",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36 Edg\/147.0.0.0",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:05:07",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36 Edg\/147.0.0.0",
+            "referer": "Direct"
+        }
+    ]
+}

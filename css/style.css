@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg,
+            #ffffff 0%,
+            #fffdfd 40%,
+            #fff7fa 75%,
+            #fff0f5 100%);
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+/* 
+@keyframes showMsg {
+    to {
+        opacity: 1;
+    }
+} */
