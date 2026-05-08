@@ -1,102 +1,107 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-const warning = document.getElementById("rotateWarning");
+let DPR = Math.min(window.devicePixelRatio || 1, 2);
 
-// ===== MOBILE DETECT =====
-function isMobile() {
-    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
-
-let isMobileDevice = isMobile();
-
-// ===== ORIENTATION CHECK =====
-function checkOrientation() {
-    if (!isMobileDevice) return;
-
-    if (window.innerHeight > window.innerWidth) {
-        warning.style.display = "flex";
-    } else {
-        warning.style.display = "none";
-    }
-}
-
-window.addEventListener("resize", checkOrientation);
-window.addEventListener("orientationchange", checkOrientation);
-checkOrientation();
-
-// ===== CANVAS RESIZE =====
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+    canvas.width = window.innerWidth * DPR;
+    canvas.height = window.innerHeight * DPR;
+
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 }
+
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// ===== MATRIX 1 =====
+// ===== MATRIX DATA =====
 const matrix1 = [
-"00000000100000000000000000000000000000000010000000",
-"00000001010000000000000000000000000000000100000000",
-"00000000000000000000000000000000000000000000000000",
-"00111001111010001001110000001111010001010001001110",
-"01000010001011001010000000010000010001010001010001",
-"01000010001010101010011000010000011111010001010001",
-"01000010001010011010001000010000010001010001011111",
-"00111001110010001001110000001111010001001110010001",
-"00000000000000000000000000000000000000000000000000",
-"00000000000000000000000000000000000000000000000000",
-"00000000000000000000000000000000000000000000000000",
-"00000000110000000000000000000000000110000000000000",
-"00000000010000000000000000000000000010000000000000",
-"00000000100000000000000000000000000100000000000000",
-"00000000000000000000000000000000000000000000000000",
-"01110001110010001001110000001110001110010001010001",
-"01001010001011001010000000001001010001011001010001",
-"11101010001010101010011000011101010001010101011111",
-"01001010001010011010001000001001011111010011010001",
-"01110001110010001001110000001110010001010001010001",
+"0000000100000000000000",
+"0000001010000000000000",
+"0000000000000000000000",
+"0111001110010001001110",
+"1000010001011001010000",
+"1000010001010101010011",
+"1000010001010011010001",
+"0111001110010001001110",
+"0000000000000000000000",
+"0000000000000000000000",
+"0000000000000000000000",
+"0000000000000100000000",
+"0000000000001000000000",
+"0000000000000000000000",
+"0011101001010001001100",
+"0100001001010001010010",
+"0100001111010001010010",
+"0100001001010001011110",
+"0011101001001110010010",
 ];
 
-// ===== MATRIX 2 =====
 const matrix2 = [
-"00000000000000000000000000000000000000000000000000000000",
-"00000000000000000000000000000000000000000000000000000000",
-"00000000000000000000000000000000000000000000000000000000",
-"00000000000000000000000000000000000000000000000000000000",
-"01110001110001110010001000011111011110001110010001001110",
-"01001010001010001011001000000100010001010001011001010000",
-"11101010001010001010101000000100011110010001010101010111",
-"01001010001011111010011000000100010100011111010011010001",
-"01110001110010001010001000000100010010010001010001001110",
+"0000000000000000000000000000",
+"0000000000000000000000000000",
+"0000000000000000000000000000",
+"0000000000000000000000000000",
+"0001111000111000111001000100",
+"0001000101000101000101100100",
+"0011100101000101000101010100",
+"0001000101000101111101001100",
+"0001111000111001000101000100",
+"0000000000000000000000000000",
+"0000000000000000000000000000",
+"0000000000000000000000000000",
+"0000000000000000000000000000",
+"1111101110001110010001001110",
+"0010001001010001011001010000",
+"0010001111010001010101010011",
+"0010001010011111010011010001",
+"0010001001010001010001001110",
+"0000000000000000000000000000",
 ];
 
-// ===== MATRIX 3 =====
 const matrix3 = [
-"000000000000000000110000000000000000000000000000000000",
-"000000000000000000010000000000000000000000000000000000",
-"000000000000000000100000000000000000000000000000000000",
-"000000000000000000000000000000000000000000000000000000",
-"100001001111000100001000000100001001111000111100100001",
-"110001010000000100001000000110001010000001000010110001",
-"101001010000000100001000000101001010000001000010101001",
-"100101010011100100001000000100101010011101000010100101",
-"100011010000100100001000000100011010000101000010100011",
-"100001001111000011110000000100001001111000111100100001",
+"00000000000000000000000",
+"00000000000000000110000",
+"00000000000000000010000",
+"00000000000000000100000",
+"00010001001110010001000",
+"00011001010000010001000",
+"00010101010011010001000",
+"00010011010001010001000",
+"00010001001110001110000",
+"00000000000000000000000",
+"00000000000000000000000",
+"00000000000000000000000",
+"00000000000000000000000",
+"10001001110001110010001",
+"11001010000010001011001",
+"10101010011010001010101",
+"10011010001010001010011",
+"10001001110001110010001",
+"00000000000000000000000",
 ];
 
 const matrices = [matrix1, matrix2, matrix3];
+
+// ===== CONFIG =====
 const flower = "🌷";
 
-// ===== STATE =====
 let particles = [];
 let currentMatrix = 0;
 let phase = 0;
 let phaseStart = performance.now();
 let stopped = false;
 
-const FORM_DURATION = 2000;
-const HOLD_DURATION = 2000;
-const BURST_DURATION = 1500;
+const FORM_DURATION = 1800;
+const HOLD_DURATION = 3000; 
+const BURST_DURATION = 1300;
+
+const isMobile = window.innerWidth < 768;
+const cellSize = isMobile ? 10 : 18;
 
 // ===== EASING =====
 function ease(t){
@@ -107,33 +112,39 @@ function ease(t){
 function buildParticles(matrix){
     particles = [];
 
-    const cell = window.innerWidth < 768 ? 12 : 18;
-    const totalWidth = matrix[0].length * cell;
-    const totalHeight = matrix.length * cell;
+    const rows = matrix.length;
+    const cols = matrix[0].length;
 
-    const offsetX = (canvas.width - totalWidth) / 2;
-    const offsetY = (canvas.height - totalHeight) / 2;
+    const width = cols * cellSize;
+    const height = rows * cellSize;
 
-    for(let y=0;y<matrix.length;y++){
-        for(let x=0;x<matrix[y].length;x++){
-            if(matrix[y][x]==="1"){
+    const offsetX = (window.innerWidth - width) / 2;
+    const offsetY = (window.innerHeight - height) / 2;
+
+    for(let y = 0; y < rows; y++){
+        for(let x = 0; x < cols; x++){
+            if(matrix[y][x] === "1"){
                 particles.push({
-                    startX: Math.random()*canvas.width,
-                    startY: Math.random()*canvas.height,
-                    targetX: offsetX + x*cell,
-                    targetY: offsetY + y*cell,
-                    endX: Math.random()*canvas.width,
-                    endY: Math.random()*canvas.height,
-                    size: cell
+                    startX: Math.random() * window.innerWidth,
+                    startY: Math.random() * window.innerHeight,
+                    targetX: offsetX + x * cellSize,
+                    targetY: offsetY + y * cellSize,
+                    endX: Math.random() * window.innerWidth,
+                    endY: Math.random() * window.innerHeight,
+                    size: cellSize
                 });
             }
         }
     }
 }
 
-buildParticles(matrices[0]);
+// ===== DRAW =====
+function drawParticle(x, y, size){
+    ctx.font = `${size}px serif`;
+    ctx.fillText(flower, x, y);
+}
 
-// ===== NEXT PHASE =====
+// ===== PHASE CONTROL =====
 function nextPhase(){
     phase++;
 
@@ -153,17 +164,13 @@ function nextPhase(){
     phaseStart = performance.now();
 }
 
-// ===== STATIC DRAW =====
+// ===== STATIC STATE =====
 function drawStatic(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    particles.forEach(p=>{
-        ctx.font = `${p.size}px Arial`;
-        ctx.fillText(flower, p.targetX, p.targetY);
-    });
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    particles.forEach(p => drawParticle(p.targetX, p.targetY, p.size));
 }
 
-// ===== ANIMATE =====
+// ===== LOOP =====
 function animate(now){
 
     if(stopped){
@@ -171,58 +178,44 @@ function animate(now){
         return;
     }
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    let rotated = false;
-
-    // ===== ROTATE ON MOBILE LANDSCAPE =====
-    if (isMobileDevice && window.innerHeight < window.innerWidth) {
-        ctx.save();
-        ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rotate(Math.PI / 2);
-        ctx.translate(-canvas.height / 2, -canvas.width / 2);
-        rotated = true;
-    }
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
     let elapsed = now - phaseStart;
 
     if(
-        (phase===0 && elapsed>FORM_DURATION) ||
-        (phase===1 && elapsed>HOLD_DURATION) ||
-        (phase===2 && elapsed>BURST_DURATION)
+        (phase === 0 && elapsed > FORM_DURATION) ||
+        (phase === 1 && elapsed > HOLD_DURATION) ||
+        (phase === 2 && elapsed > BURST_DURATION)
     ){
         nextPhase();
         elapsed = 0;
     }
 
-    particles.forEach(p=>{
+    particles.forEach(p => {
 
-        let x,y;
+        let x, y;
 
-        if(phase===0){
-            const t = ease(elapsed/FORM_DURATION);
-            x = p.startX + (p.targetX-p.startX)*t;
-            y = p.startY + (p.targetY-p.startY)*t;
+        if(phase === 0){
+            const t = ease(elapsed / FORM_DURATION);
+            x = p.startX + (p.targetX - p.startX) * t;
+            y = p.startY + (p.targetY - p.startY) * t;
         }
-        else if(phase===1){
+        else if(phase === 1){
             x = p.targetX;
             y = p.targetY;
         }
         else{
-            const t = ease(elapsed/BURST_DURATION);
-            x = p.targetX + (p.endX-p.targetX)*t;
-            y = p.targetY + (p.endY-p.targetY)*t;
+            const t = ease(elapsed / BURST_DURATION);
+            x = p.targetX + (p.endX - p.targetX) * t;
+            y = p.targetY + (p.endY - p.targetY) * t;
         }
 
-        ctx.font = `${p.size}px Arial`;
-        ctx.fillText(flower,x,y);
+        drawParticle(x, y, p.size);
     });
-
-    if(rotated){
-        ctx.restore();
-    }
 
     requestAnimationFrame(animate);
 }
 
+// ===== START =====
+buildParticles(matrices[0]);
 requestAnimationFrame(animate);

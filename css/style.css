@@ -1,35 +1,78 @@
-body {
+html, body {
     margin: 0;
+    padding: 0;
     overflow: hidden;
-    background: linear-gradient(180deg,
-            #ffffff 0%,
-            #fffdfd 40%,
-            #fff7fa 75%,
-            #fff0f5 100%);
+    height: 100%;
+    background: linear-gradient(135deg, #ffe6f0, #e6f7ff);
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
+/* Canvas full màn hình */
 canvas {
     display: block;
     width: 100vw;
     height: 100vh;
+    will-change: transform;
 }
-/* 
-@keyframes showMsg {
+
+/* =========================
+   MESSAGE CONTAINER
+========================= */
+.message-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    animation: fadeUp 1.2s ease-out;
+}
+
+/* hộp message */
+.message-box {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 14px 22px;
+    border-radius: 18px;
+
+    font-size: 18px;
+    color: #ff4d88;
+    font-weight: 500;
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08),
+        0 0 20px rgba(255, 105, 180, 0.15);
+
+    backdrop-filter: blur(8px);
+
+    animation: floatPulse 3s ease-in-out infinite;
+}
+
+/* animation xuất hiện */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 30px);
+    }
     to {
         opacity: 1;
+        transform: translate(-50%, 0);
     }
-} */
+}
 
-#rotateWarning {
-    position: fixed;
-    inset: 0;
-    background: black;
-    color: white;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    text-align: center;
-    z-index: 9999;
-    padding: 20px;
+/* animation nhẹ liên tục */
+@keyframes floatPulse {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+/* glow emoji nếu cần */
+.emoji-glow {
+    text-shadow:
+        0 0 6px rgba(255, 105, 180, 0.4),
+        0 0 12px rgba(255, 182, 193, 0.3);
 }

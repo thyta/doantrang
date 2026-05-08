@@ -26,10 +26,7 @@ $data['logs'] = array_slice($data['logs'], -20);
 file_put_contents($dataFile, json_encode($data, JSON_PRETTY_PRINT));
 
 $messages = [
-    "Ngủ ngon nhé ❤️",
-    "Chúc em mơ đẹp 🌸",
-    "Mong em có giấc ngủ thật yên bình 🌙",
-    "Anh nhớ em nhiều 💖"
+    "Chúc em mơ đẹp 🌸"
 ];
 
 $msg = $messages[array_rand($messages)];
@@ -40,39 +37,19 @@ $msg = $messages[array_rand($messages)];
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chúc ngủ ngon</title>
+<title>congchuadongdanh</title>
 
 <link rel="stylesheet" href="css/style.css">
-
-<style>
-/* ===== ORIENTATION WARNING ===== */
-#rotateWarning {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    color: #fff;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 18px;
-    padding: 20px;
-    z-index: 9999;
-}
-</style>
-
 </head>
 <body>
 
-<!-- WARNING OVERLAY -->
-<div id="rotateWarning">
-    Vui lòng xoay ngang điện thoại để có trải nghiệm tốt hơn
-</div>
-
 <canvas id="canvas"></canvas>
 
-<div class="message">
-    <?= $msg ?>
+<!-- MESSAGE -->
+<div class="message-container">
+    <div class="message-box">
+        <?= htmlspecialchars($msg) ?>
+    </div>
 </div>
 
 <script src="js/script.js"></script>
