@@ -1,5 +1,5 @@
 {
-    "visits": 2,
+    "visits": 18,
     "button_clicks": 0,
     "logs": [
         {
@@ -12,6 +12,102 @@
             "time": "08\/05\/2026 14:05:07",
             "ip": "::1",
             "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36 Edg\/147.0.0.0",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:30:50",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36 Edg\/147.0.0.0",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:31:46",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:32:13",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:33:35",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:33:37",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:33:44",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:33:46",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:33:57",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:37:41",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:37:42",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:37:48",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/16.6 Mobile\/15E148 Safari\/604.1",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:38:11",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/16.6 Mobile\/15E148 Safari\/604.1",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:39:24",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:39:28",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/16.6 Mobile\/15E148 Safari\/604.1",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:42:36",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36 Edg\/147.0.0.0",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 14:42:40",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/16.6 Mobile\/15E148 Safari\/604.1",
             "referer": "Direct"
         }
     ]

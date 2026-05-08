@@ -1,6 +1,31 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+const warning = document.getElementById("rotateWarning");
+
+// ===== MOBILE DETECT =====
+function isMobile() {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+let isMobileDevice = isMobile();
+
+// ===== ORIENTATION CHECK =====
+function checkOrientation() {
+    if (!isMobileDevice) return;
+
+    if (window.innerHeight > window.innerWidth) {
+        warning.style.display = "flex";
+    } else {
+        warning.style.display = "none";
+    }
+}
+
+window.addEventListener("resize", checkOrientation);
+window.addEventListener("orientationchange", checkOrientation);
+checkOrientation();
+
+// ===== CANVAS RESIZE =====
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -62,6 +87,7 @@ const matrix3 = [
 const matrices = [matrix1, matrix2, matrix3];
 const flower = "🌷";
 
+// ===== STATE =====
 let particles = [];
 let currentMatrix = 0;
 let phase = 0;
@@ -72,10 +98,12 @@ const FORM_DURATION = 2000;
 const HOLD_DURATION = 2000;
 const BURST_DURATION = 1500;
 
+// ===== EASING =====
 function ease(t){
     return 1 - Math.pow(1 - t, 3);
 }
 
+// ===== BUILD PARTICLES =====
 function buildParticles(matrix){
     particles = [];
 
@@ -105,13 +133,11 @@ function buildParticles(matrix){
 
 buildParticles(matrices[0]);
 
+// ===== NEXT PHASE =====
 function nextPhase(){
     phase++;
 
-    // Nếu đang ở matrix cuối
     if(currentMatrix === matrices.length - 1){
-
-        // Sau khi form xong -> đứng yên luôn
         if(phase >= 1){
             stopped = true;
             return;
@@ -127,6 +153,7 @@ function nextPhase(){
     phaseStart = performance.now();
 }
 
+// ===== STATIC DRAW =====
 function drawStatic(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
@@ -136,6 +163,7 @@ function drawStatic(){
     });
 }
 
+// ===== ANIMATE =====
 function animate(now){
 
     if(stopped){
@@ -144,6 +172,17 @@ function animate(now){
     }
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    let rotated = false;
+
+    // ===== ROTATE ON MOBILE LANDSCAPE =====
+    if (isMobileDevice && window.innerHeight < window.innerWidth) {
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(Math.PI / 2);
+        ctx.translate(-canvas.height / 2, -canvas.width / 2);
+        rotated = true;
+    }
 
     let elapsed = now - phaseStart;
 
@@ -178,6 +217,10 @@ function animate(now){
         ctx.font = `${p.size}px Arial`;
         ctx.fillText(flower,x,y);
     });
+
+    if(rotated){
+        ctx.restore();
+    }
 
     requestAnimationFrame(animate);
 }

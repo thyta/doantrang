@@ -41,9 +41,33 @@ $msg = $messages[array_rand($messages)];
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chúc ngủ ngon</title>
+
 <link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ===== ORIENTATION WARNING ===== */
+#rotateWarning {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    color: #fff;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    z-index: 9999;
+}
+</style>
+
 </head>
 <body>
+
+<!-- WARNING OVERLAY -->
+<div id="rotateWarning">
+    Vui lòng xoay ngang điện thoại để có trải nghiệm tốt hơn
+</div>
 
 <canvas id="canvas"></canvas>
 

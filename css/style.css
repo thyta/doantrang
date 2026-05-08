@@ -19,3 +19,17 @@ canvas {
         opacity: 1;
     }
 } */
+
+#rotateWarning {
+    position: fixed;
+    inset: 0;
+    background: black;
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    text-align: center;
+    z-index: 9999;
+    padding: 20px;
+}
