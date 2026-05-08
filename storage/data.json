@@ -1,19 +1,7 @@
 {
-    "visits": 82,
+    "visits": 84,
     "button_clicks": 0,
     "logs": [
-        {
-            "time": "08\/05\/2026 15:44:46",
-            "ip": "::1",
-            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36 Edg\/147.0.0.0",
-            "referer": "Direct"
-        },
-        {
-            "time": "08\/05\/2026 15:44:54",
-            "ip": "::1",
-            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36 Edg\/147.0.0.0",
-            "referer": "Direct"
-        },
         {
             "time": "08\/05\/2026 15:45:34",
             "ip": "::1",
@@ -120,6 +108,18 @@
             "time": "08\/05\/2026 15:57:38",
             "ip": "::1",
             "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/147.0.0.0 Safari\/537.36 Edg\/147.0.0.0",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 15:58:59",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/136.0.0.0 Safari\/537.36",
+            "referer": "Direct"
+        },
+        {
+            "time": "08\/05\/2026 15:59:07",
+            "ip": "::1",
+            "device": "Mozilla\/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/16.6 Mobile\/15E148 Safari\/604.1",
             "referer": "Direct"
         }
     ]
