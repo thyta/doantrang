@@ -1,5 +1,6 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const replayBtn = document.getElementById("replayBtn");
 
 let DPR = Math.min(window.devicePixelRatio || 1, 2);
 
@@ -17,7 +18,6 @@ function resizeCanvas() {
 
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
-
 // ===== MATRIX DATA =====
 const matrix1 = [
 "0000000000000000000000",
@@ -91,7 +91,6 @@ const matrix3 = [
 
 const matrices = [matrix1, matrix2, matrix3];
 
-// ===== CONFIG =====
 const flower = "🌷";
 
 let particles = [];
@@ -101,18 +100,26 @@ let phaseStart = performance.now();
 let stopped = false;
 
 const FORM_DURATION = 1800;
-const HOLD_DURATION = 3000; 
+const HOLD_DURATION = 3000;
 const BURST_DURATION = 1300;
 
 const isMobile = window.innerWidth < 768;
 const cellSize = isMobile ? 10 : 18;
 
-// ===== EASING =====
 function ease(t){
     return 1 - Math.pow(1 - t, 3);
 }
 
-// ===== BUILD PARTICLES =====
+function sendTrack(type) {
+    fetch("track.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `type=${type}`
+    });
+}
+
 function buildParticles(matrix){
     particles = [];
 
@@ -142,13 +149,23 @@ function buildParticles(matrix){
     }
 }
 
-// ===== DRAW =====
 function drawParticle(x, y, size){
     ctx.font = `${size}px serif`;
     ctx.fillText(flower, x, y);
 }
 
-// ===== PHASE CONTROL =====
+function restartAnimation(){
+    sendTrack("replay");
+
+    currentMatrix = 0;
+    phase = 0;
+    stopped = false;
+    phaseStart = performance.now();
+
+    buildParticles(matrices[0]);
+    requestAnimationFrame(animate);
+}
+
 function nextPhase(){
     phase++;
 
@@ -168,13 +185,11 @@ function nextPhase(){
     phaseStart = performance.now();
 }
 
-// ===== STATIC STATE =====
 function drawStatic(){
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     particles.forEach(p => drawParticle(p.targetX, p.targetY, p.size));
 }
 
-// ===== LOOP =====
 function animate(now){
 
     if(stopped){
@@ -220,6 +235,11 @@ function animate(now){
     requestAnimationFrame(animate);
 }
 
-// ===== START =====
+replayBtn.addEventListener("click", restartAnimation);
+
+window.addEventListener("beforeunload", () => {
+    navigator.sendBeacon("track.php");
+});
+
 buildParticles(matrices[0]);
 requestAnimationFrame(animate);
